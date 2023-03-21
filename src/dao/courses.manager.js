@@ -1,4 +1,5 @@
-import { FileManager } from './file.manager.js';
+import coursesModel from '../models/courses.model.js';
+import { MongoManager } from './mongo.manager.js';
 
 class Courses {
   #persistencia;
@@ -14,5 +15,5 @@ class Courses {
     return this.#persistencia.create(course);
   }
 }
-const instancia = new Courses(new FileManager('courses.json'));
+const instancia = new Courses(new MongoManager(coursesModel));
 export default instancia;
