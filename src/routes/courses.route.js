@@ -8,4 +8,10 @@ router.get('/', async (req, res) => {
   res.send({ courses });
 });
 
+router.post('/', async (req, res) => {
+  const data = req.body;
+  const newCourse = await coursesManager.save(data);
+  re.send({ course: newCourse });
+});
+
 export default router;

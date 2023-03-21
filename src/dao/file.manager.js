@@ -3,7 +3,7 @@ import fileDirName from '../utils.js';
 const { __dirname } = fileDirName(import.meta);
 export class FileManager {
   constructor(path) {
-    this.path = __dirname + path;
+    this.path = __dirname + '/' + path;
   }
 
   async getAll() {
@@ -17,7 +17,9 @@ export class FileManager {
 
   async create(entity) {
     const allEntities = await this.getAll();
-    await fs.promises.writeFile(JSON.stringify([...allEntities, entity]));
+    console.log(entity);
+    const stringified = JSON.stringify([...allEntities, entity], null, 2);
+    await fs.promises.writeFile(this.path, stringified);
     return entity;
   }
 }

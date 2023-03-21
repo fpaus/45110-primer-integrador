@@ -1,6 +1,6 @@
 import { FileManager } from './file.manager.js';
 
-class Courses {
+class Users {
   #persistencia;
   constructor(persistencia) {
     this.#persistencia = persistencia;
@@ -14,5 +14,5 @@ class Courses {
     return this.#persistencia.create(course);
   }
 }
-const instancia = new Courses(new FileManager('courses.json'));
+const instancia = new Users(new FileManager('users.json'));
 export default instancia;
