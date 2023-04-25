@@ -1,4 +1,4 @@
-import coursesModel from '../models/courses.model.js';
+import coursesModel from './models/courses.model.js';
 import { MongoManager } from './mongo.manager.js';
 
 class Courses {

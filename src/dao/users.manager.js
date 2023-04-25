@@ -1,4 +1,4 @@
-import usersModel from '../models/user.model.js';
+import usersModel from './models/user.model.js';
 import { MongoManager } from './mongo.manager.js';
 
 class Users {
