@@ -5,10 +5,10 @@ import usersManager from '../dao/users.manager.js';
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const users = await usersManager.getAll();
+  const users = await usersManager.getAll(req.query);
   res.render('users', {
     title: 'Usuarios',
-    users,
+    users: users.docs,
   });
 });
 

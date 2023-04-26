@@ -4,7 +4,7 @@ const router = Router();
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await usersManager.getAll();
+    const users = await usersManager.getAll(req.query);
     res.send({ users });
   } catch (error) {
     next(error);

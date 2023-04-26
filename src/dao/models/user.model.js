@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+import mongoosePaginate from 'mongoose-paginate-v2';
 
-const userCollection = 'users';
+export const userCollection = 'users';
 
 const userSchema = new mongoose.Schema({
   name: {
@@ -27,5 +28,8 @@ const userSchema = new mongoose.Schema({
     default: [],
   },
 });
+
+userSchema.plugin(mongoosePaginate);
+
 const usersModel = mongoose.model(userCollection, userSchema);
 export default usersModel;

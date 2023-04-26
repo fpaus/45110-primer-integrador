@@ -7,12 +7,16 @@ class Users {
     this.#persistencia = persistencia;
   }
 
-  async getAll() {
-    return this.#persistencia.getAll();
+  async getAll(filters) {
+    return this.#persistencia.getAll(filters);
   }
 
   async save(course) {
     return this.#persistencia.create(course);
+  }
+
+  async get(id) {
+    return this.#persistencia.get(id);
   }
 }
 
