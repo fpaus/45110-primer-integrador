@@ -1,10 +1,10 @@
-import passport from 'passport';
-import { ExtractJwt, Strategy as JwtStrategy } from 'passport-jwt';
-import config from '../../../data.js';
+import passport from "passport";
+import { ExtractJwt, Strategy as JwtStrategy } from "passport-jwt";
+import config from "../../env.js";
 
 export function jwtStrategy() {
   passport.use(
-    'jwt',
+    "jwt",
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
@@ -16,12 +16,12 @@ export function jwtStrategy() {
         } catch (error) {
           done(error);
         }
-      },
-    ),
+      }
+    )
   );
 }
 
 function cookieExtractor(req) {
   console.log(req.cookies);
-  return req?.cookies?.['jwt'];
+  return req?.cookies?.["jwt"];
 }

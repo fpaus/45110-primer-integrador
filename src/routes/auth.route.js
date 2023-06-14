@@ -1,30 +1,19 @@
-import { Router } from 'express';
-import passport from 'passport';
-import { generateToken } from '../utils.js';
+import { Router } from "express";
+import passport from "passport";
+import { generateToken } from "../utils.js";
+import AuthController from "../controllers/auth.controller.js";
+
+const controller = new AuthController();
 const router = Router();
 
 router.post(
-  '/login',
-  passport.authenticate('local', {
-    failureRedirect: '/api/auth/login-failure',
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/api/auth/login-failure",
   }),
-  async (req, res, next) => {
-    const user = req.user;
-    const token = generateToken({
-      _id: user._id,
-      email: user.email,
-      role: 'ADMIN',
-    });
-    res.cookie('jwt', token, {
-      httpOnly: true,
-      maxAge: 3600000,
-    });
-    res.send({ user: req.user });
-  },
+  controller.login.bind(controller)
 );
 
-router.get('/login-failure', (req, res) => {
-  res.status(401).send({ message: 'Login failed' });
-});
+router.get("/login-failure", controller.loginFailure.bind(controller));
 
 export default router;

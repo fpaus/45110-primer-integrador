@@ -1,7 +1,7 @@
-import jwt from 'jsonwebtoken';
-import { dirname } from 'path';
-import { fileURLToPath } from 'url';
-import config from '../data.js';
+import jwt from "jsonwebtoken";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import config from "./env.js";
 const { JWT_TOKEN } = config;
 
 export default function fileDirName(meta) {
@@ -14,7 +14,7 @@ export default function fileDirName(meta) {
 
 export function generateToken(user) {
   return jwt.sign(user, JWT_TOKEN, {
-    expiresIn: '24h',
+    expiresIn: "24h",
   });
 }
 export function verifyToken(token) {

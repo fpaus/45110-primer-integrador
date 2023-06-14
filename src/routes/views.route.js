@@ -1,23 +1,13 @@
-import { Router } from 'express';
-import coursesManager from '../dao/courses.manager.js';
-import usersManager from '../dao/users.manager.js';
+import { Router } from "express";
+import coursesManager from "../dao/courses.manager.js";
+import usersManager from "../dao/users.manager.js";
+import ViewsController from "../controllers/views.controller.js";
 
+const controller = new ViewsController();
 const router = Router();
 
-router.get('/', async (req, res) => {
-  const users = await usersManager.getAll(req.query);
-  res.render('users', {
-    title: 'Usuarios',
-    users: users.docs,
-  });
-});
+router.get("/", controller.renderUsers.bind(controller));
 
-router.get('/courses', async (req, res) => {
-  const courses = await coursesManager.getAll();
-  res.render('courses', {
-    title: 'Cursos',
-    courses,
-  });
-});
+router.get("/courses", controller.renderCourses.bind(controller));
 
 export default router;
